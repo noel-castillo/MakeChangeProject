@@ -4,6 +4,8 @@
 
 ### Overview
 
+This program simulates a cash transaction interface.
+
 ### How to run
 
 ### Technologies/topics used
