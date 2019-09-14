@@ -16,6 +16,14 @@ public class MakeChangeApp {
 	public static double priceOfItem(Scanner keyboard) {
 		System.out.print("Enter price of item: ");
 		double output = keyboard.nextDouble();
+		double priceOfNextItem;
+		do{
+			System.out.print("Enter price of next item or enter 0 to checkout: ");
+			priceOfNextItem = keyboard.nextDouble();
+			output += priceOfNextItem;
+		} while(priceOfNextItem != 0);
+		
+		System.out.println("Total checkout cost: $" + output);
 		return output;
 
 	}
