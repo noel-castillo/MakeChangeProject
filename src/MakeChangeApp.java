@@ -51,82 +51,93 @@ public class MakeChangeApp {
 			if (output / 20 >= 1) {
 				twenties = (int) (output / 20);
 				output = output - (twenties * 20);
-				
 				currencyMsg = (output >= .005) 
 							? (twenties == 1)
-								? "twenty, "
-								: "twenties, "
+								? "twenty dollar bill, "
+								: "twenty dollar bills, "
 							: (twenties == 1)
-								? "twenty."
-								: "twenties.";
-				System.out.println((int) twenties + " " + currencyMsg);
-//				if ((int) twenties == 1) {
-//					System.out.print((int) twenties + " twenty, ");
-//				} else {
-//					System.out.print((int) twenties + " twenties, ");
-//				}
+								? "twenty dollar bill."
+								: "twenty dollar bills.";
+				System.out.print((int) twenties + " " + currencyMsg);
 			}
 			if (output / 10 >= 1) {
 				tens = (int) (output / 10);
 				output = output - (tens * 10);
-				if ((int) tens == 1) {
-					System.out.print((int) tens + " ten, ");
-				} else {
-					System.out.print((int) tens + " tens, ");
-				}
+				currencyMsg = (output >= .005) 
+						? (tens == 1)
+								? "ten dollar bill, "
+								: "ten dollar bills, "
+						: (tens == 1)
+								? "ten dollar bill."
+								: "ten dollar bills.";
+				System.out.print((int) tens + " " + currencyMsg);
 			}
 			if (output / 5 >= 1) {
 				fives = (int) (output / 5);
 				output = output - (fives * 5);
-				if ((int) fives == 1) {
-					System.out.print((int) fives + " five, ");
-				} else {
-					System.out.print((int) fives + " five, ");
-				}
+				currencyMsg = (output >= .005) 
+						? (fives == 1)
+								? "five dollar bill, "
+								: "five dollar bills, "
+						: (fives == 1)
+								? "five dollar bill."
+								: "five dollar bills.";
+				System.out.print((int) fives + " " + currencyMsg);
 			}
 			if (output / 1 >= 1) {
 				ones = (int) (output / 1);
 				output = output - (ones);
-				if ((int) ones == 1) {
-					System.out.print((int) ones + " dollar, ");
-				} else {
-					System.out.print((int) ones + " dollars, ");
-				}
+				currencyMsg = (output >= .005) 
+						? (ones == 1)
+								? "one dollar bill, "
+								: "one dollar bills, "
+						: (ones == 1)
+								? "one dollar bill."
+								: "one dollar bills.";
+				System.out.print((int) ones + " " + currencyMsg);
 			}
 			if (output / .25 >= 1) {
 				quarters = (int) (output / .25);
 				output = output - (quarters * .25);
-				if ((int) quarters == 1) {
-					System.out.print((int) quarters + " quarter, ");
-				} else {
-					System.out.print((int) quarters + " quarters, ");
-				}
+				currencyMsg = (output >= .005) 
+						? (quarters == 1)
+								? "quarter, "
+								: "quarters, "
+						: (quarters == 1)
+								? "quarter."
+								: "quarters.";
+				System.out.print((int) quarters + " " + currencyMsg);
 			}
 			if (output / .10 >= 1) {
 				dimes = (int) (output / .10);
 				output = output - (dimes * .10);
-				if ((int) dimes == 1) {
-					System.out.print((int) dimes + " dime, ");
-				} else {
-					System.out.print((int) dimes + " dimes, ");
-				}
+				currencyMsg = (output >= .005) 
+						? (dimes == 1)
+								? "dime, "
+								: "dimes, "
+						: (dimes == 1)
+								? "dime."
+								: "dimes.";
+				System.out.print((int) dimes + " " + currencyMsg);
 			}
 			if (output / .05 >= 1) {
 				nickels = (int) (output / .05);
 				output = output - (nickels * .05);
-				if ((int) nickels == 1) {
-					System.out.print((int) nickels + " nickel, ");
-				} else {
-					System.out.print((int) nickels + " nickels, ");
-				}
+				currencyMsg = (output >= .005) 
+						? (nickels == 1)
+								? "nickel, "
+								: "nickels, "
+						: (nickels == 1)
+								? "nickel."
+								: "nickels.";
+				System.out.print((int) nickels + " " + currencyMsg);
 			}
-			if ((output * 100) >= 1) {
+			if (((output + 0.005) * 100) >= 1) {
 				pennies = (int) ((output + 0.005) * 100);
-				if ((int) pennies == 1) {
-					System.out.print((int) pennies + " penny. ");
-				} else {
-					System.out.print((int) pennies + " pennies. ");
-				}
+				currencyMsg = (pennies == 1) 
+						? "penny."
+						: "pennies.";
+				System.out.print((int) pennies + " " + currencyMsg);
 			}
 		}
 		return output;
