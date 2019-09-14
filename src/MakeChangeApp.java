@@ -62,7 +62,11 @@ public class MakeChangeApp {
 		output = paidAmount;
 
 		while (output < checkoutTotal) {
-			System.out.println("$" + output + " is insufficient.");
+			outputUser = output;
+			outputUser *= 100;
+			outputUser = (int) outputUser;
+			outputUser /= 100;
+			System.out.println("$" + outputUser + " is insufficient.");
 			System.out.println("Enter additional payment amount or enter 0 for refund:");
 			do {
 				paidAmount = keyboard.nextDouble();
@@ -72,10 +76,6 @@ public class MakeChangeApp {
 			} while (paidAmount < 0);
 			
 			if(paidAmount == 0) {
-				outputUser = output;
-				outputUser *= 100;
-				outputUser = (int) outputUser;
-				outputUser /= 100;
 				System.out.println("Refunded: $" + outputUser);
 				output = 0;
 				break;
@@ -88,15 +88,17 @@ public class MakeChangeApp {
 	}
 
 	public static double changeDue(double amountPaid, double checkoutTotal) {
-		double output = ((amountPaid - checkoutTotal) + .005), twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
+		double output = ((amountPaid - checkoutTotal) + .005), outputUser, twenties, tens, fives, ones, quarters, dimes,
+				nickels, pennies;
 		String currencyMsg;
-		output *= 100;
-		output = (int) output;
-		output /= 100;
+		outputUser = output;
+		outputUser *= 100;
+		outputUser = (int) outputUser;
+		outputUser /= 100;
 		if (amountPaid == checkoutTotal) {
 			System.out.println("No change due.");
 		} else {
-			System.out.print("Change due ($" + output + "):");
+			System.out.print("Change due ($" + outputUser + "):");
 			if (output / 20 >= 1) {
 				twenties = (int) (output / 20);
 				output = output - (twenties * 20);
