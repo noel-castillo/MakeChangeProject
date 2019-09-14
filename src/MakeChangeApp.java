@@ -7,21 +7,26 @@ public class MakeChangeApp {
 		Scanner keyboard = new Scanner(System.in);
 		double priceOfItem = priceOfItem(keyboard);
 		double amountPaid = amountPaid(keyboard, priceOfItem);
-		changeDue(amountPaid, priceOfItem);
+		if(amountPaid != 0) {
+			changeDue(amountPaid, priceOfItem);
+		}
 		
 		keyboard.close();
 
 	}
 
 	public static double priceOfItem(Scanner keyboard) {
-		System.out.print("Enter price of item: ");
+		System.out.print("Enter price of item: $");
 		double output = keyboard.nextDouble();
 		double priceOfNextItem;
 		do{
-			System.out.print("Enter price of next item or enter 0 to checkout: ");
+			System.out.print("Enter price of next item or enter 0 to checkout: $");
 			priceOfNextItem = keyboard.nextDouble();
 			output += priceOfNextItem;
 		} while(priceOfNextItem != 0);
+		output *= 100;
+		output = (int) output;
+		output /= 100;
 		
 		System.out.println("Total checkout cost: $" + output);
 		return output;
@@ -30,7 +35,7 @@ public class MakeChangeApp {
 
 	public static double amountPaid(Scanner keyboard, double priceOfItem) {
 		String anotherPayment;
-		System.out.print("Enter amount paid to cashier: ");
+		System.out.print("Enter amount paid to cashier: $");
 		double output = keyboard.nextDouble();
 		while (output < priceOfItem) {
 			System.out
@@ -38,15 +43,18 @@ public class MakeChangeApp {
 			anotherPayment = keyboard.next().toLowerCase();
 
 			if (anotherPayment.equalsIgnoreCase("y")) {
-				System.out.println("Enter next payment amount: ");
+				System.out.println("Enter next payment amount: $");
 				output += keyboard.nextDouble();
 			} else if (anotherPayment.equalsIgnoreCase("n")) {
+				System.out.println("Cashier returns $" + output);
+				output = 0;
 				break;
 			} else {
 				System.out.println("Invalid response. Try again.");
 			}
 
 		}
+		System.out.println("Total paid is $" + output);
 		return output;
 	}
 
