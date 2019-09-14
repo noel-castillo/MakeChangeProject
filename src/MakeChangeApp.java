@@ -8,6 +8,8 @@ public class MakeChangeApp {
 		double priceOfItem = priceOfItem(keyboard);
 		double amountPaid = amountPaid(keyboard, priceOfItem);
 		changeDue(amountPaid, priceOfItem);
+		
+		keyboard.close();
 
 	}
 
@@ -43,7 +45,6 @@ public class MakeChangeApp {
 	public static double changeDue(double amountPaid, double priceOfItem) {
 		double output = amountPaid - priceOfItem, twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
 		String currencyMsg;
-		boolean done = false;
 		if (amountPaid == priceOfItem) {
 			System.out.println("No change is due");
 		} else {
