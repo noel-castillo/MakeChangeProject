@@ -4,7 +4,15 @@
 
 ### Overview
 
-This program simulates a cash transaction interface.
+This program simulates a cash transaction interface at a register
+that carries denominations of twenty dollar bills and below. Items can be
+scanned into the register until all items are entered and ready for checking
+out. Customer will then pay an amount, but if it is insufficient to cover
+the checkout cost, then the customer may make an additional payment or request
+a refund from the cashier. If the customer request a refund, then the cashier
+will issue a refund and break down the denominations of the refund. Should the
+amount paid exceed the checkout cost, then the cashier will issue the change
+and break down the denominations.
 
 ### How to run
 

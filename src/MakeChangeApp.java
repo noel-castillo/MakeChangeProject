@@ -77,6 +77,7 @@ public class MakeChangeApp {
 			
 			if(paidAmount == 0) {
 				System.out.println("Refunded: $" + outputUser);
+				changeDue(output, 0.0);
 				output = 0;
 				break;
 			} else {
