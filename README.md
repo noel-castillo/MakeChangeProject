@@ -35,12 +35,14 @@ Otherwise, if no change is due, then a proper message will be relayed.
 
 ### Technologies/topics used
 
-methods
+calling a method
+calling a method within a method
 while loops
 do while loops
 if else statements
 ternary operators
 continue
+break
 casting
 
 ### Lessons
