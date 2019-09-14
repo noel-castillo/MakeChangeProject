@@ -36,14 +36,23 @@ Otherwise, if no change is due, then a proper message will be relayed.
 ### Technologies/topics used
 
 calling a method
+
 calling a method within a method
+
 while loops
+
 do while loops
+
 if else statements
+
 ternary operators
+
 continue
+
 break
+
 casting
+
 
 ### Lessons
 
@@ -52,5 +61,7 @@ separate variable whose purpose is to output data to the user and now
 the variable that holds the data will not be casted and will not lose accuracy.
 
 Debugging skills improved
+
 User interaction skills improved
+
 Identifying loopholes in code improved
