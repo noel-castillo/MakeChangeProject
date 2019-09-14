@@ -40,7 +40,7 @@ public class MakeChangeApp {
 		output = (int) output;
 		output /= 100;
 
-		System.out.println("Total checkout cost: $" + output);
+		System.out.println("Checkout total: $" + output);
 		return output;
 
 	}
@@ -72,7 +72,7 @@ public class MakeChangeApp {
 					}
 				} while (paidAmount < 0);
 			} else if (anotherPayment.equalsIgnoreCase("n")) {
-				System.out.println("Cashier returns $" + output);
+				System.out.println("Cashier returns: $" + output);
 				output = 0;
 				break;
 			} else {
@@ -92,7 +92,7 @@ public class MakeChangeApp {
 		double output = amountPaid - checkoutTotal, twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
 		String currencyMsg;
 		if (amountPaid == checkoutTotal) {
-			System.out.println("No change due");
+			System.out.println("No change due.");
 		} else {
 			System.out.print("Change due: ");
 			if (output / 20 >= 1) {
