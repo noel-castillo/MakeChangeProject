@@ -67,29 +67,31 @@ public class MakeChangeApp {
 			outputToUser = (int) outputToUser;
 			outputToUser /= 100;
 			System.out.println("$" + outputToUser + " is insufficient.");
-			System.out.println("Enter additional payment amount or enter 0 for refund:");
+			System.out.print("Enter additional payment amount or enter 0 for refund: $");
 			do {
 				paidAmount = keyboard.nextDouble();
 				if (paidAmount < 0) {
 					System.out.println("Cannot pay a negative amount.");
 				}
 			} while (paidAmount < 0);
-			
-			if(paidAmount == 0) {
-				System.out.println("Refunded: $" + outputToUser);
+
+			if (paidAmount == 0) {
+				System.out.print("Refunded: $" + outputToUser + ": ");
 				changeDue(output, 0.0);
 				output = 0;
 				break;
 			} else {
-			output += paidAmount;
+				output += paidAmount;
 			}
 		}
-		System.out.println("Amount paid: $" + output);
+		if (output != 0) {
+			System.out.println("Amount paid: $" + output);
+		}
 		return output;
 	}
 
 	public static double changeDue(double amountPaid, double checkoutTotal) {
-		double output = ((amountPaid - checkoutTotal) + .005), outputToUser, twenties, tens, fives, ones, quarters, dimes,
+		double output = ((amountPaid - checkoutTotal)), outputToUser, twenties, tens, fives, ones, quarters, dimes,
 				nickels, pennies;
 		String currencyMsg;
 		outputToUser = output;
@@ -99,7 +101,9 @@ public class MakeChangeApp {
 		if (amountPaid == checkoutTotal) {
 			System.out.println("No change due.");
 		} else {
-			System.out.print("Change due ($" + outputToUser + "):");
+			if(checkoutTotal != 0) {
+			System.out.print("Change due $" + outputToUser + ": ");
+			}
 			if (output / 20 >= 1) {
 				twenties = (int) (output / 20);
 				output = output - (twenties * 20);
@@ -184,7 +188,7 @@ public class MakeChangeApp {
 								: "nickels.";
 				System.out.print((int) nickels + " " + currencyMsg);
 			}
-			if ((output * 100) >= 1) {
+			if (((output * 100) + .005) >= 1) {
 				pennies = (int) ((output + 0.005) * 100);
 				currencyMsg = (pennies == 1) 
 						? "penny."
