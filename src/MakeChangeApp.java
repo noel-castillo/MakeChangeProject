@@ -22,6 +22,10 @@ public class MakeChangeApp {
 		do{
 			System.out.print("Enter price of next item or enter 0 to checkout: $");
 			priceOfNextItem = keyboard.nextDouble();
+			if(priceOfNextItem < 0) {
+				System.out.println("You entered an invalid price amount.");
+				continue;
+			}
 			output += priceOfNextItem;
 		} while(priceOfNextItem != 0);
 		output *= 100;
@@ -54,7 +58,11 @@ public class MakeChangeApp {
 			}
 
 		}
+		if(output == 0) {
+			System.out.println("Have a nice day!");
+		} else {
 		System.out.println("Total paid is $" + output);
+		}
 		return output;
 	}
 
