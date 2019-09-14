@@ -42,6 +42,7 @@ public class MakeChangeApp {
 
 	public static double changeDue(double amountPaid, double priceOfItem) {
 		double output = amountPaid - priceOfItem, twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
+		String currencyMsg;
 		boolean done = false;
 		if (amountPaid == priceOfItem) {
 			System.out.println("No change is due");
@@ -50,17 +51,26 @@ public class MakeChangeApp {
 			if (output / 20 >= 1) {
 				twenties = (int) (output / 20);
 				output = output - (twenties * 20);
-				if ((int) twenties == 1) {
-					System.out.println((int) twenties + " twenty, ");
-				} else {
-					System.out.print((int) twenties + " twenties, ");
-				}
+				
+				currencyMsg = (output >= .005) 
+							? (twenties == 1)
+								? "twenty, "
+								: "twenties, "
+							: (twenties == 1)
+								? "twenty."
+								: "twenties.";
+				System.out.println((int) twenties + " " + currencyMsg);
+//				if ((int) twenties == 1) {
+//					System.out.print((int) twenties + " twenty, ");
+//				} else {
+//					System.out.print((int) twenties + " twenties, ");
+//				}
 			}
 			if (output / 10 >= 1) {
 				tens = (int) (output / 10);
 				output = output - (tens * 10);
 				if ((int) tens == 1) {
-					System.out.println((int) tens + " ten, ");
+					System.out.print((int) tens + " ten, ");
 				} else {
 					System.out.print((int) tens + " tens, ");
 				}
@@ -69,7 +79,7 @@ public class MakeChangeApp {
 				fives = (int) (output / 5);
 				output = output - (fives * 5);
 				if ((int) fives == 1) {
-					System.out.println((int) fives + " five, ");
+					System.out.print((int) fives + " five, ");
 				} else {
 					System.out.print((int) fives + " five, ");
 				}
@@ -78,7 +88,7 @@ public class MakeChangeApp {
 				ones = (int) (output / 1);
 				output = output - (ones);
 				if ((int) ones == 1) {
-					System.out.println((int) ones + " dollar, ");
+					System.out.print((int) ones + " dollar, ");
 				} else {
 					System.out.print((int) ones + " dollars, ");
 				}
@@ -87,7 +97,7 @@ public class MakeChangeApp {
 				quarters = (int) (output / .25);
 				output = output - (quarters * .25);
 				if ((int) quarters == 1) {
-					System.out.println((int) quarters + " quarter, ");
+					System.out.print((int) quarters + " quarter, ");
 				} else {
 					System.out.print((int) quarters + " quarters, ");
 				}
@@ -96,7 +106,7 @@ public class MakeChangeApp {
 				dimes = (int) (output / .10);
 				output = output - (dimes * .10);
 				if ((int) dimes == 1) {
-					System.out.println((int) dimes + " dime, ");
+					System.out.print((int) dimes + " dime, ");
 				} else {
 					System.out.print((int) dimes + " dimes, ");
 				}
@@ -105,7 +115,7 @@ public class MakeChangeApp {
 				nickels = (int) (output / .05);
 				output = output - (nickels * .05);
 				if ((int) nickels == 1) {
-					System.out.println((int) nickels + " nickel, ");
+					System.out.print((int) nickels + " nickel, ");
 				} else {
 					System.out.print((int) nickels + " nickels, ");
 				}
@@ -113,7 +123,7 @@ public class MakeChangeApp {
 			if ((output * 100) >= 1) {
 				pennies = (int) ((output + 0.005) * 100);
 				if ((int) pennies == 1) {
-					System.out.println((int) pennies + " penny. ");
+					System.out.print((int) pennies + " penny. ");
 				} else {
 					System.out.print((int) pennies + " pennies. ");
 				}
