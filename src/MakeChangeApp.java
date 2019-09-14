@@ -97,7 +97,7 @@ public class MakeChangeApp {
 		if (amountPaid == checkoutTotal) {
 			System.out.println("No change due.");
 		} else {
-			System.out.print("Change due: ");
+			System.out.print("Change due ($" + checkoutTotal + "):");
 			if (output / 20 >= 1) {
 				twenties = (int) (output / 20);
 				output = output - (twenties * 20);
