@@ -5,50 +5,72 @@ public class MakeChangeApp {
 	public static void main(String[] args) {
 
 		Scanner keyboard = new Scanner(System.in);
-		double priceOfItem = priceOfItem(keyboard);
-		double amountPaid = amountPaid(keyboard, priceOfItem);
-		if(amountPaid != 0) {
-			changeDue(amountPaid, priceOfItem);
+		double checkoutTotal = checkoutTotal(keyboard);
+		double amountPaid = amountPaid(keyboard, checkoutTotal);
+		System.out.println("Checkout total: $" + checkoutTotal);
+		if (amountPaid != 0) {
+			changeDue(amountPaid, checkoutTotal);
 		}
-		
+
 		keyboard.close();
 
 	}
 
-	public static double priceOfItem(Scanner keyboard) {
-		System.out.print("Enter price of item: $");
-		double output = keyboard.nextDouble();
-		double priceOfNextItem;
-		do{
+	public static double checkoutTotal(Scanner keyboard) {
+		double output, priceOfNextItem;
+		do {
+			System.out.print("Enter price of item: $");
+			priceOfNextItem = keyboard.nextDouble();
+			if (priceOfNextItem < 0) {
+				System.out.println("The price cannot be negative");
+			}
+		} while (priceOfNextItem < 0);
+		output = priceOfNextItem;
+		do {
 			System.out.print("Enter price of next item or enter 0 to checkout: $");
 			priceOfNextItem = keyboard.nextDouble();
-			if(priceOfNextItem < 0) {
-				System.out.println("You entered an invalid price amount.");
+			if (priceOfNextItem < 0) {
+				System.out.println("The price cannot be negative.");
 				continue;
 			}
 			output += priceOfNextItem;
-		} while(priceOfNextItem != 0);
+		} while (priceOfNextItem != 0);
+		
 		output *= 100;
 		output = (int) output;
 		output /= 100;
-		
+
 		System.out.println("Total checkout cost: $" + output);
 		return output;
 
 	}
 
-	public static double amountPaid(Scanner keyboard, double priceOfItem) {
+	public static double amountPaid(Scanner keyboard, double checkoutTotal) {
 		String anotherPayment;
-		System.out.print("Enter amount paid to cashier: $");
-		double output = keyboard.nextDouble();
-		while (output < priceOfItem) {
-			System.out
-					.println("Amount paid is insufficient." + "\nWould you like to make an additional payment? (Y/N)");
+		double output, paidAmount;
+		do {
+			System.out.print("Enter amount paid to cashier: $");
+			paidAmount = keyboard.nextDouble();
+			if (paidAmount < 0) {
+				System.out.println("Cannot pay a negative amount.");
+			}
+		} while (paidAmount < 0);
+
+		output = paidAmount;
+
+		while (output < checkoutTotal) {
+			System.out.println("Amount paid is insufficient.");
+			System.out.println("Would you like to make an additional payment? (Y/N)");
 			anotherPayment = keyboard.next().toLowerCase();
 
 			if (anotherPayment.equalsIgnoreCase("y")) {
-				System.out.println("Enter next payment amount: $");
-				output += keyboard.nextDouble();
+				do {
+					System.out.println("Enter next payment amount: $");
+					paidAmount += keyboard.nextDouble();
+					if (paidAmount < 0) {
+						System.out.println("Cannot pay a negative amount.");
+					}
+				} while (paidAmount < 0);
 			} else if (anotherPayment.equalsIgnoreCase("n")) {
 				System.out.println("Cashier returns $" + output);
 				output = 0;
@@ -56,23 +78,23 @@ public class MakeChangeApp {
 			} else {
 				System.out.println("Invalid response. Try again.");
 			}
-
+			output += paidAmount;
 		}
-		if(output == 0) {
+		if (output == 0) {
 			System.out.println("Have a nice day!");
 		} else {
-		System.out.println("Total paid is $" + output);
+			System.out.println("Total paid: $" + output);
 		}
 		return output;
 	}
 
-	public static double changeDue(double amountPaid, double priceOfItem) {
-		double output = amountPaid - priceOfItem, twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
+	public static double changeDue(double amountPaid, double checkoutTotal) {
+		double output = amountPaid - checkoutTotal, twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
 		String currencyMsg;
-		if (amountPaid == priceOfItem) {
-			System.out.println("No change is due");
+		if (amountPaid == checkoutTotal) {
+			System.out.println("No change due");
 		} else {
-			System.out.print("Change due is: ");
+			System.out.print("Change due: ");
 			if (output / 20 >= 1) {
 				twenties = (int) (output / 20);
 				output = output - (twenties * 20);
