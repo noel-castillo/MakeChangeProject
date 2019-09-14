@@ -37,6 +37,10 @@ casting
 
 ### Lessons
 
-debugging skills improved
-user interaction skills improved
-identifying loopholes in code improved
+Casting to an int too often will result in loss of accuracy. Created a
+separate variable whose purpose is to output data to the user and now
+the variable that holds the data will not be casted and will not lose accuracy.
+
+Debugging skills improved
+User interaction skills improved
+Identifying loopholes in code improved
