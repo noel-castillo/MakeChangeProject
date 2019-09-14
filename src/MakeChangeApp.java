@@ -5,14 +5,20 @@ public class MakeChangeApp {
 	public static void main(String[] args) {
 
 		Scanner keyboard = new Scanner(System.in);
+		String runAgain;
+		do {
 		double checkoutTotal = checkoutTotal(keyboard);
 		double amountPaid = amountPaid(keyboard, checkoutTotal);
 		if (amountPaid != 0) {
 			System.out.println("Checkout total: $" + checkoutTotal);
 			changeDue(amountPaid, checkoutTotal);
-			System.out.println("\nHave a nice day!");
 		}
+		System.out.println("\nHave a nice day!");
+		System.out.print("Enter \"r\" to run again. Or any other key to exit:");
+		runAgain = keyboard.next();
+		} while(runAgain.equalsIgnoreCase("r"));
 
+		System.out.println("Goodbye.");
 		keyboard.close();
 
 	}
