@@ -7,9 +7,10 @@ public class MakeChangeApp {
 		Scanner keyboard = new Scanner(System.in);
 		double checkoutTotal = checkoutTotal(keyboard);
 		double amountPaid = amountPaid(keyboard, checkoutTotal);
-		System.out.println("Checkout total: $" + checkoutTotal);
 		if (amountPaid != 0) {
+			System.out.println("Checkout total: $" + checkoutTotal);
 			changeDue(amountPaid, checkoutTotal);
+			System.out.println("\nHave a nice day!");
 		}
 
 		keyboard.close();
@@ -27,15 +28,17 @@ public class MakeChangeApp {
 		} while (priceOfNextItem < 0);
 		output = priceOfNextItem;
 		do {
-			System.out.print("Enter price of next item or enter 0 to checkout: $");
-			priceOfNextItem = keyboard.nextDouble();
-			if (priceOfNextItem < 0) {
-				System.out.println("The price cannot be negative.");
-				continue;
-			}
+			do {
+				System.out.print("Enter price of next item or enter 0 to checkout: $");
+				priceOfNextItem = keyboard.nextDouble();
+				if (priceOfNextItem < 0) {
+					System.out.println("The price cannot be negative.");
+					continue;
+				}
+			} while (priceOfNextItem < 0);
 			output += priceOfNextItem;
 		} while (priceOfNextItem != 0);
-		
+
 		output *= 100;
 		output = (int) output;
 		output /= 100;
@@ -66,7 +69,7 @@ public class MakeChangeApp {
 			if (anotherPayment.equalsIgnoreCase("y")) {
 				do {
 					System.out.println("Enter next payment amount: $");
-					paidAmount += keyboard.nextDouble();
+					paidAmount = keyboard.nextDouble();
 					if (paidAmount < 0) {
 						System.out.println("Cannot pay a negative amount.");
 					}

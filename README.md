@@ -18,4 +18,12 @@ Program will output "No change due" if there is no change due.
 
 ### Technologies/topics used
 
+methods
+while loops
+do while loops
+if else statements
+ternary operators
+continue
+casting
+
 ### Lessons
