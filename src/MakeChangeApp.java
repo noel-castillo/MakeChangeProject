@@ -18,7 +18,7 @@ public class MakeChangeApp {
 	}
 
 	public static double checkoutTotal(Scanner keyboard) {
-		double output, priceOfNextItem;
+		double output, priceOfNextItem, outputUser;
 		do {
 			System.out.print("Enter price of item: $");
 			priceOfNextItem = keyboard.nextDouble();
@@ -39,18 +39,18 @@ public class MakeChangeApp {
 			output += priceOfNextItem;
 		} while (priceOfNextItem != 0);
 
-		output *= 100;
-		output = (int) output;
-		output /= 100;
+		outputUser = output;
+		outputUser *= 100;
+		outputUser = (int) outputUser;
+		outputUser /= 100;
 
-		System.out.println("Checkout total: $" + output);
+		System.out.println("Checkout total: $" + outputUser);
 		return output;
 
 	}
 
 	public static double amountPaid(Scanner keyboard, double checkoutTotal) {
-		String anotherPayment;
-		double output, paidAmount;
+		double output, paidAmount, outputUser;
 		do {
 			System.out.print("Enter amount paid to cashier: $");
 			paidAmount = keyboard.nextDouble();
@@ -62,42 +62,41 @@ public class MakeChangeApp {
 		output = paidAmount;
 
 		while (output < checkoutTotal) {
-			System.out.println("Amount paid is insufficient.");
-			System.out.println("Would you like to make an additional payment? (Y/N)");
-			anotherPayment = keyboard.next().toLowerCase();
-
-			if (anotherPayment.equalsIgnoreCase("y")) {
-				do {
-					System.out.println("Enter next payment amount: $");
-					paidAmount = keyboard.nextDouble();
-					if (paidAmount < 0) {
-						System.out.println("Cannot pay a negative amount.");
-					}
-				} while (paidAmount < 0);
-			} else if (anotherPayment.equalsIgnoreCase("n")) {
-				System.out.println("Cashier returns: $" + output);
+			System.out.println("$" + output + " is insufficient.");
+			System.out.println("Enter additional payment amount or enter 0 for refund:");
+			do {
+				paidAmount = keyboard.nextDouble();
+				if (paidAmount < 0) {
+					System.out.println("Cannot pay a negative amount.");
+				}
+			} while (paidAmount < 0);
+			
+			if(paidAmount == 0) {
+				outputUser = output;
+				outputUser *= 100;
+				outputUser = (int) outputUser;
+				outputUser /= 100;
+				System.out.println("Refunded: $" + outputUser);
 				output = 0;
 				break;
 			} else {
-				System.out.println("Invalid response. Try again.");
-			}
 			output += paidAmount;
+			}
 		}
-		if (output == 0) {
-			System.out.println("Have a nice day!");
-		} else {
-			System.out.println("Total paid: $" + output);
-		}
+		System.out.println("Amount paid: $" + output);
 		return output;
 	}
 
 	public static double changeDue(double amountPaid, double checkoutTotal) {
-		double output = amountPaid - checkoutTotal, twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
+		double output = ((amountPaid - checkoutTotal) + .005), twenties, tens, fives, ones, quarters, dimes, nickels, pennies;
 		String currencyMsg;
+		output *= 100;
+		output = (int) output;
+		output /= 100;
 		if (amountPaid == checkoutTotal) {
 			System.out.println("No change due.");
 		} else {
-			System.out.print("Change due ($" + checkoutTotal + "):");
+			System.out.print("Change due ($" + output + "):");
 			if (output / 20 >= 1) {
 				twenties = (int) (output / 20);
 				output = output - (twenties * 20);
@@ -182,7 +181,7 @@ public class MakeChangeApp {
 								: "nickels.";
 				System.out.print((int) nickels + " " + currencyMsg);
 			}
-			if (((output + 0.005) * 100) >= 1) {
+			if ((output * 100) >= 1) {
 				pennies = (int) ((output + 0.005) * 100);
 				currencyMsg = (pennies == 1) 
 						? "penny."
